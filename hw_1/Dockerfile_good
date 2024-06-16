@@ -15,7 +15,6 @@ WORKDIR /workspace
 # Копируем файл requirements.txt в рабочую директорию
 COPY requirements.txt /workspace/
 
-
 # Устанавливаем JupyterLab и другие необходимые пакеты
 RUN pip install --no-cache-dir -r requirements.txt
 
