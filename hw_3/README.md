@@ -4,7 +4,7 @@
 
 1. Проверяем, что все успешно установилось
 
-![alt text](./img/1.png)
+![alt text](./imgs/1.png)
 
 2. Запускаем сервисы 
 
@@ -17,9 +17,9 @@ kubectl create -f pg_deployment.yml
 kubectl create -f nextcloud.yml
 ```
 
-![alt text](./img/2.png)
+![alt text](./imgs/2.png)
 
-![alt text](./img/3.png)
+![alt text](./imgs/3.png)
 
 ## Ответы на вопросы
 ```
@@ -33,6 +33,4 @@ kubectl create -f nextcloud.yml
 
 Для nextcloud сnанет недоступна база данных, то есть все данные хранящиеся в postgres ьудут недоступны. 
 Когда отскейлим количество реплик обратно в 1, будет создан новый под с БД, но данные не сохранятся, так как не было volume. Это приведет к 500 ошибке в Nextcloud.
-На скрине логи некстклауда до и после того, как уронили postgres
 
-![alt text](./screens/nextcloud_logs_wo_postgres.png)
