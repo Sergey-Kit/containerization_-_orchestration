@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jupyterlab
+  labels:
+    app: jupyterlab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jupyterlab
+  template:
+    metadata:
+      labels:
+        app: jupyterlab
+    spec:
+      containers:
+      - name: jupyterlab
+        image: sergeykit/jupyterlab:latest
+        envFrom:
+        - configMapRef:
+            name: jupyter-config
+        - secretRef:
+            name: jupyter-secret
+        volumeMounts:
+        - name: workspace
+          mountPath: /workspace
+        - name: appdata
+          mountPath: /app/data
+        ports:
+        - containerPort: 8888
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8888
+          initialDelaySeconds: 60
+          periodSeconds: 30
+      volumes:
+      - name: workspace
+        emptyDir: {}
+      - name: appdata
+        emptyDir: {}
